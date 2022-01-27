@@ -2,7 +2,8 @@
 
 <JUCERPROJECT id="UiXrlA" name="Downsampler" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              pluginManufacturer="NikitaHismatov" aaxIdentifier="ru.nikitahismatov.downsampler">
+              pluginManufacturer="NikitaHismatov" aaxIdentifier="ru.nikitahismatov.downsampler"
+              cppLanguageStandard="17">
   <MAINGROUP id="NeH4H0" name="Downsampler">
     <GROUP id="{43A61070-4AAA-474F-713F-FA5BA2242353}" name="Source">
       <FILE id="dqW2CZ" name="PluginProcessor.cpp" compile="1" resource="0"
