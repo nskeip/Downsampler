@@ -166,7 +166,8 @@ bool DownsamplerAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* DownsamplerAudioProcessor::createEditor()
 {
-    return new DownsamplerAudioProcessorEditor (*this);
+    // return new DownsamplerAudioProcessorEditor (*this);
+    return new juce::GenericAudioProcessorEditor(*this);
 }
 
 //==============================================================================
@@ -181,6 +182,24 @@ void DownsamplerAudioProcessor::setStateInformation (const void* data, int sizeI
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout DownsamplerAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+
+    layout.add(
+        std::make_unique<juce::AudioParameterInt>(
+            "NewSampleRate",
+            "New Sample Rate",
+            1000,
+            48000,
+            48000,
+            "New Sample Rate, Hz"
+        )
+    );
+
+    return layout;
 }
 
 //==============================================================================
