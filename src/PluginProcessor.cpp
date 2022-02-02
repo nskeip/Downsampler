@@ -95,12 +95,14 @@ void DownsamplerAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    this->resampleHandler = resample_open(1,  sampleRate, sampleRate);
 }
 
 void DownsamplerAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+    resample_close(this->resampleHandler);
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
