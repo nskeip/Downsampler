@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include <JuceHeader.h>
-#include <libresample.h>
+#include "JuceHeader.h"
+#include "libresample.h"
 
 //==============================================================================
 /**
