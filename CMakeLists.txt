@@ -48,17 +48,7 @@ juce_add_plugin(Downsampler
 
 juce_generate_juce_header(Downsampler)
 
-# Adding the libresample dependency:
-include(FetchContent)
-FetchContent_Declare(
-        libresample
-        GIT_REPOSITORY https://github.com/minorninth/libresample
-        GIT_TAG        b556e9ab8c303190dd6411ee16292262453bc28e
-)
-FetchContent_MakeAvailable(libresample)
-target_include_directories(Downsampler PRIVATE
-        ${libresample_SOURCE_DIR}/include
-        )
+target_include_directories(Downsampler PRIVATE libresample/include)
 
 # `target_sources` adds source files to a target. We pass the target that needs the sources as the
 # first argument, then a visibility parameter for the sources which should normally be PRIVATE.
