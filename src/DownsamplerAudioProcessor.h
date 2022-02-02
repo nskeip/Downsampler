@@ -43,6 +43,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    // parameters:
+    juce::AudioParameterInt* newSampleRate;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DownsamplerAudioProcessor)
 };

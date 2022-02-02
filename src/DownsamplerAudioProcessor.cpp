@@ -11,6 +11,12 @@ DownsamplerAudioProcessor::DownsamplerAudioProcessor()
                      #endif
                        )
 {
+    addParameter(newSampleRate = new juce::AudioParameterInt("newSampleRate",
+                                                             "New Sample Rate",
+                                                             1000,
+                                                             48000,
+                                                             48000,
+                                                             "New Sample Rate, Hz"));
 }
 
 DownsamplerAudioProcessor::~DownsamplerAudioProcessor()
