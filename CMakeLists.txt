@@ -36,8 +36,11 @@ target_compile_definitions(Downsampler
         JUCE_USE_CURL=0     # If you remove this, add `NEEDS_CURL TRUE` to the `juce_add_plugin` call
         JUCE_VST3_CAN_REPLACE_VST2=0)
 
+find_package(SampleRate CONFIG REQUIRED)
+
 target_link_libraries(Downsampler
     PRIVATE
+        SampleRate::samplerate
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
     PUBLIC
