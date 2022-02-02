@@ -1,6 +1,7 @@
 #pragma once
 
 #include <JuceHeader.h>
+#include <samplerate.h>
 
 //==============================================================================
 class DownsamplerAudioProcessor  : public juce::AudioProcessor
@@ -45,6 +46,10 @@ public:
 private:
     // parameters:
     juce::AudioParameterInt* newSampleRate;
+
+    // other stuff:
+    SRC_STATE* sampleRateConverter;
+    int srcError = 0;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DownsamplerAudioProcessor)

@@ -91,15 +91,13 @@ void DownsamplerAudioProcessor::changeProgramName (int index, const juce::String
 //==============================================================================
 void DownsamplerAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
     juce::ignoreUnused (sampleRate, samplesPerBlock);
+    this->sampleRateConverter = src_new(SRC_SINC_BEST_QUALITY, 2, &this->srcError);
 }
 
 void DownsamplerAudioProcessor::releaseResources()
 {
-    // When playback stops, you can use this as an opportunity to free up any
-    // spare memory, etc.
+    src_delete(this->sampleRateConverter);
 }
 
 bool DownsamplerAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
