@@ -10,6 +10,9 @@ project(Downsampler VERSION 0.0.2)
 # find_package(JUCE CONFIG REQUIRED)        # If you've installed JUCE to your system
 # or
 add_subdirectory(JUCE)                    # If you've put JUCE in a subdirectory called JUCE
+add_subdirectory(libresample)
+
+set_property(TARGET libresample PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 # If you are building a VST2 or AAX plugin, CMake needs to be told where to find these SDKs on your
 # system. This setup should be done before calling `juce_add_plugin`.
@@ -48,7 +51,7 @@ juce_add_plugin(Downsampler
 
 juce_generate_juce_header(Downsampler)
 
-target_include_directories(Downsampler PRIVATE libresample/include)
+target_include_directories(Downsampler PRIVATE ${libresample_INCLUDE_DIRECTORY})
 
 # `target_sources` adds source files to a target. We pass the target that needs the sources as the
 # first argument, then a visibility parameter for the sources which should normally be PRIVATE.
@@ -92,6 +95,7 @@ target_compile_definitions(Downsampler
 target_link_libraries(Downsampler
     PRIVATE
         # AudioPluginData           # If we'd created a binary data target, we'd link to it here
+        libresample
         juce::juce_audio_utils
     PUBLIC
         juce::juce_recommended_config_flags
