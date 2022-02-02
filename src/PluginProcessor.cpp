@@ -151,14 +151,21 @@ void DownsamplerAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     // interleaved by keeping the same state.
     if (this->resampleHandler != nullptr) {
 
-        const double currentSampleRate = getSampleRate();
         const double newFactor = *this->newSampleRate / getSampleRate();
+        const int numSamples = buffer.getNumSamples();
+        int bufferUsed = 0;
 
-        for (int channel = 0; channel < totalNumInputChannels; ++channel)
+        for (int channelNumber = 0; channelNumber < totalNumInputChannels; ++channelNumber)
         {
-            auto* channelData = buffer.getWritePointer (channel);
-            //resample_process(this->resampleHandler,
-            //                 newFactor ...)
+            auto* channelData = buffer.getWritePointer(channelNumber);
+//            resample_process(this->resampleHandler,
+//                             newFactor,
+//                             channelData,
+//                             numSamples,
+//                             0,
+//                             &bufferUsed,
+//                             channelData,
+//                             numSamples);
         }
     }
 }
