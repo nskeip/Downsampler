@@ -92,7 +92,7 @@ void DownsamplerAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    this->resampleHandler = resample_open(1,  sampleRate, sampleRate);
+    this->resampleHandler = resample_open(1, 0.0, 1.0);
 }
 
 void DownsamplerAudioProcessor::releaseResources()
@@ -149,11 +149,17 @@ void DownsamplerAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
+    if (this->resampleHandler != nullptr) {
 
-        // ..do something to the data...
+        const double currentSampleRate = getSampleRate();
+        const double newFactor = *this->newSampleRate / getSampleRate();
+
+        for (int channel = 0; channel < totalNumInputChannels; ++channel)
+        {
+            auto* channelData = buffer.getWritePointer (channel);
+            //resample_process(this->resampleHandler,
+            //                 newFactor ...)
+        }
     }
 }
 
