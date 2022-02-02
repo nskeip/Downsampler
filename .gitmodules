@@ -3,4 +3,4 @@
 	url = git@github.com:juce-framework/JUCE.git
 [submodule "libresample"]
 	path = libresample
-	url = git@github.com:minorninth/libresample.git
+	url = git@github.com:8W9aG/libresample.git
