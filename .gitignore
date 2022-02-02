@@ -351,4 +351,5 @@ MigrationBackup/
 
 ## customization
 cmake-build-debug/
+CMakeFiles/
 out/
